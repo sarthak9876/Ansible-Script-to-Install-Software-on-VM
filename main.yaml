@@ -1,0 +1,21 @@
+---
+# tasks file for zif
+- name: Preparing nodes for ZIF
+  hosts: localhost
+  become: true
+  tasks:
+   - name: Install git
+     dnf:
+       name: git
+       state: present
+   - name: Downloading the script
+     ansible.builtin.git:
+       repo: https://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:x-oauth-basic@github.com/cloudsurfer0007/prereq_script/
+       dest: /home/ec2-user/clone
+       clone: yes
+       update: yes
+   - name: running the shell script
+     command: sudo sh /home/ec2-user/clone/create_prereq.sh
+
+
+
